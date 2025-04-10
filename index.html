@@ -1,74 +1,229 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio1</title>
-    <script src="./js/main.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logic Challenge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f9fb;
+      color: #333;
+      text-align: center;
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 2rem 1rem;
+    }
+
+    .divTitleHeader {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .divSubTitleHeader {
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    section {
+      padding: 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .divTitle {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    .input,
+    .button {
+      margin: 0.5rem auto;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      display: block;
+      width: 250px;
+      max-width: 90%;
+    }
+
+    .button {
+      background-color: #0d6efd;
+      color: white;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #0a58ca;
+    }
+
+    .resposta {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    img {
+      margin-top: 1rem;
+      max-width: 300px;
+      border-radius: 8px;
+    }
+
+    footer {
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: #f0f0f0;
+      color: #777;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <div class="divTitleHeader">Desafio</div>
-        <div class="divSubTitleHeader">Op. Lógicos, Op. Relacionais e Estrutura IF</div>
-    </header>
+  <header>
+    <div class="divTitleHeader">Logic Challenge</div>
+    <div class="divSubTitleHeader">Logical Operators, Relational Operators and IF Structure</div>
+  </header>
 
-    <p>
-        <div class="divTitle">Foi dentro ou fora da semi-quadra?</div>
-        <br>
-        <label for="X">Coordenada X:</label>
-        <input class="input" type="text" id="X">
+  <section>
+    <div class="divTitle">Was it inside or outside the court?</div>
+    <p class="description">Imagine you're watching a tennis match and someone shouts "OUT!" But how do you know?
+      Based on the ball's coordinates (X and Y), we can determine if the ball landed inside the semi-court area
+      (between 0 ≤ X ≤ 432 and 0 ≤ Y ≤ 468).</p>
 
-        <label for="Y">Coordenada Y:</label>
-        <input class="input" type="text" id="Y">
-        <button class="button" onclick="verificaBola()">Verifique!</button>
-    </p>
+    <label for="X">X Coordinate:</label>
+    <input class="input" type="text" id="X" />
 
-    <div class="respostaEx1"></div>
+    <label for="Y">Y Coordinate:</label>
+    <input class="input" type="text" id="Y" />
 
-    <img src="./img/tenis.png" width="300px" height=""> </img>
+    <button class="button" onclick="verificaBola()">Check!</button>
 
-    <p>
-        <div class="divTitle">Quem é o Vice-Campeão?</div>
-        <br>
-        <input class="input" type="text" placeholder="Coloque a pontuação do jogador 1!" id="jg1">
-        <input class="input" type="text" placeholder="Coloque a pontuação do jogador 2!" id="jg2">
-        <input class="input" type="text" placeholder="Coloque a pontuação do jogador 3!" id="jg3">
+    <div class="resposta" id="respostaEx1"></div>
+    <img src="./img/tenis.png" alt="Tennis Court" />
+  </section>
 
-        <button class="button" onclick="Tumbolia()">Descobrir o vice!</button>
-    </p>
+  <section>
+    <div class="divTitle">Who was the Runner-up?</div>
+    <p class="description">Three players competed in a championship. We already know the winner is the one with the
+      highest score, but can you help us figure out who came in second place?</p>
 
-    <div class="respostaEx2"></div>
+    <input class="input" type="text" placeholder="Player 1 score" id="jg1" />
+    <input class="input" type="text" placeholder="Player 2 score" id="jg2" />
+    <input class="input" type="text" placeholder="Player 3 score" id="jg3" />
 
-    <img src="./img/bocha.jpg" width="300px" height=""> </img>
+    <button class="button" onclick="Tumbolia()">Find the Runner-up!</button>
 
-    <p>
-        <div class="divTitle">Vamos jogar Zerinho?</div>
-        <br>
-        <label for="Alice">Escolha da Alice:</label>
-        <input class="input" type="number" min="0" max="1" id="Alice">
+    <div class="resposta" id="respostaEx2"></div>
+    <img src="./img/bocha.jpg" alt="Bocha Game" />
+  </section>
 
-        <label for="Beto">Escolha do Beto:</label>
-        <input class="input" type="number" min="0" max="1" id="Beto">
+  <section>
+    <div class="divTitle">Let's play Odd One Out?</div>
+    <p class="description">Alice, Beto, and Clara play a game where each one chooses 0 or 1. The winner is the only
+      one who chose differently from the others. Can you spot the winner?</p>
 
-        <label for="Clara">Escolha da Clara:</label>
-        <input class="input" type="number" min="0" max="1" id="Clara">
+    <label for="Alice">Alice's choice:</label>
+    <input class="input" type="number" min="0" max="1" id="Alice" />
 
-        <button class="button" onclick="Zerinho()">Verifique!</button>
+    <label for="Beto">Beto's choice:</label>
+    <input class="input" type="number" min="0" max="1" id="Beto" />
 
-    </p>
+    <label for="Clara">Clara's choice:</label>
+    <input class="input" type="number" min="0" max="1" id="Clara" />
 
-    <div class="respostaEx3"></div>
+    <button class="button" onclick="Zerinho()">Check!</button>
 
-    <img src="./img/zerinho.png" width="300px" height=""> </img>
+    <div class="resposta" id="respostaEx3"></div>
+    <img src="./img/zerinho.png" alt="Zerinho Game" />
+  </section>
 
-    <p>
-        Giulia Galzerano Schiavetto | Guilherme da Silva Oliveira | Manuela Galzerano Schiavetto | Pedro Silva
-    </p>
+  <footer>
+    Giulia Galzerano Schiavetto | Guilherme da Silva Oliveira | Manuela Galzerano Schiavetto | Pedro Silva
+  </footer>
 
+  <script>
+    function verificaBola() {
+      const X = parseFloat(document.getElementById("X").value);
+      const Y = parseFloat(document.getElementById("Y").value);
+      const respostaEx1 = document.getElementById("respostaEx1");
+
+      if (!isNaN(X) && !isNaN(Y)) {
+        if (X >= 0 && X <= 432 && Y >= 0 && Y <= 468) {
+          respostaEx1.innerText = "The ball was INSIDE!";
+        } else {
+          respostaEx1.innerText = "The ball was OUT!";
+        }
+      } else {
+        respostaEx1.innerText = "Please enter valid numbers for both coordinates.";
+      }
+    }
+
+    function Tumbolia() {
+      const respostaEx2 = document.getElementById("respostaEx2");
+
+      let players = [
+        { name: "Player 1", score: parseInt(document.getElementById("jg1").value) },
+        { name: "Player 2", score: parseInt(document.getElementById("jg2").value) },
+        { name: "Player 3", score: parseInt(document.getElementById("jg3").value) }
+      ];
+
+      if (players.some(p => isNaN(p.score))) {
+        respostaEx2.innerText = "Please enter all three scores correctly.";
+        return;
+      }
+
+      players.sort((a, b) => b.score - a.score); // Descending order
+
+      const [first, second, third] = players;
+
+      if (first.score === second.score && second.score === third.score) {
+        respostaEx2.innerText = "It's a complete tie! No runner-up.";
+      } else if (first.score === second.score) {
+        respostaEx2.innerText = `${third.name} is the Runner-up (the other two tied for 1st).`;
+      } else if (second.score === third.score) {
+        respostaEx2.innerText = `${second.name} and ${third.name} are both Runner-ups!`;
+      } else {
+        respostaEx2.innerText = `${second.name} is the Runner-up with a score of ${second.score}.`;
+      }
+    }
+
+
+    function Zerinho() {
+      const Alice = document.getElementById("Alice").value;
+      const Beto = document.getElementById("Beto").value;
+      const Clara = document.getElementById("Clara").value;
+
+      const respostaEx3 = document.getElementById("respostaEx3");
+
+      if (Alice === "" || Beto === "" || Clara === "") {
+        respostaEx3.innerText = "Please enter values for all players.";
+        return;
+      }
+
+      if (Alice != Beto && Alice != Clara) {
+        respostaEx3.innerText = "Alice is the winner!";
+      }
+      else if (Beto != Alice && Beto != Clara) {
+        respostaEx3.innerText = "Beto is the winner!";
+      }
+      else if (Clara != Alice && Clara != Beto) {
+        respostaEx3.innerText = "Clara is the winner!";
+      } else {
+        respostaEx3.innerText = "No winner this time!";
+      }
+    }
+  </script>
 </body>
 
 </html>
